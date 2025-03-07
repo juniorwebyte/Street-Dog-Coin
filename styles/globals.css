@@ -1,0 +1,175 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 50% 5%;
+    --foreground: 0 0% 100%;
+    --card: 240 30% 10%;
+    --card-foreground: 0 0% 100%;
+    --popover: 240 30% 10%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 280 75% 60%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 70% 55%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 240 20% 20%;
+    --muted-foreground: 240 10% 80%;
+    --accent: 300 70% 60%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 60% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 240 20% 30%;
+    --input: 240 20% 20%;
+    --ring: 280 75% 60%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Galaxy Animation */
+@keyframes galaxy-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.galaxy-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at center, #1b2735 0%, #090a0f 100%);
+  overflow: hidden;
+}
+
+.stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  animation: galaxy-spin 240s linear infinite;
+}
+
+.star {
+  position: absolute;
+  background-color: #ffffff;
+  border-radius: 50%;
+}
+
+.nebula {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.3;
+}
+
+.constellation {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+}
+
+.constellation-line {
+  stroke: rgba(255, 255, 255, 0.3);
+  stroke-width: 1;
+}
+
+.constellation-star {
+  fill: #ffffff;
+}
+
+.planet {
+  position: absolute;
+  border-radius: 50%;
+  box-shadow: inset -10px -10px 20px rgba(0, 0, 0, 0.5);
+}
+
+.black-hole {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, #000000, #1a1a1a);
+  box-shadow: 0 0 20px 10px rgba(255, 255, 255, 0.1);
+}
+
+/* Pulsating Animation */
+@keyframes pulsate {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.pulsate {
+  animation: pulsate 3s ease-in-out infinite;
+}
+
+/* Floating Animation */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.float {
+  animation: float 5s ease-in-out infinite;
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 1s ease-out;
+}
+
+/* Slide In Animation */
+@keyframes slideIn {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.slide-in {
+  animation: slideIn 0.5s ease-out;
+}
+
