@@ -10,6 +10,7 @@ import { AlertCircle } from "lucide-react"
 import { useLanguage } from "@/contexts/language-context"
 import { getTranslation } from "@/lib/translations"
 import { motion } from "framer-motion"
+import { formatNumber } from "@/lib/utils"
 
 type AirdropStatsType = {
   totalTokens: string
@@ -22,48 +23,42 @@ export function AirdropStats() {
   const [stats, setStats] = useState<AirdropStatsType | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
-  const { web3, chainId, isConnected } = useWeb3()
+  const { web3, chainId, isConnected, tokenBalance } = useWeb3()
   const { language } = useLanguage()
 
-  useEffect(() => {
-    const fetchStats = async () => {
-      if (!isConnected) {
-        setIsLoading(false)
-        return
-      }
-
-      if (!web3) {
-        setError(getTranslation(language, "web3Error"))
-        setIsLoading(false)
-        return
-      }
-
-      if (!chainId) {
-        setError(getTranslation(language, "networkError"))
-        setIsLoading(false)
-        return
-      }
-
-      setIsLoading(true)
-      setError(null)
-
-      try {
-        const contractAddress = process.env[`NEXT_PUBLIC_CONTRACT_ADDRESS_${chainId}`]
-        if (!contractAddress) {
-          throw new Error(getTranslation(language, "contractAddressError"))
-        }
-        const data = await getAirdropStats(web3, contractAddress)
-        setStats(data)
-      } catch (error) {
-        console.error("Error loading stats:", error)
-        setError(error instanceof Error ? error.message : getTranslation(language, "unknownError"))
-      } finally {
-        setIsLoading(false)
-      }
+  // Função para atualizar estatísticas
+  const updateStats = async () => {
+    if (!isConnected) {
+      setIsLoading(false)
+      return
     }
 
-    fetchStats()
-  }, [web3, chainId, isConnected, language])
+    setIsLoading(true)
+    setError(null)
+
+    try {
+      // Usar a função de simulação para obter estatísticas
+      const data = await getAirdropStats()
+      setStats(data)
+    } catch (error) {
+      console.error("Error loading stats:", error)
+      setError(error instanceof Error ? error.message : getTranslation(language, "unknownError"))
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  // Atualizar estatísticas quando conectado
+  useEffect(() => {
+    updateStats()
+
+    // Configurar atualização periódica (a cada 30 segundos)
+    const interval = setInterval(() => {
+      updateStats()
+    }, 30000)
+
+    return () => clearInterval(interval)
+  }, [isConnected, language])
 
   if (!isConnected) {
     return null
@@ -107,14 +102,14 @@ export function AirdropStats() {
     >
       <StatCard
         title={getTranslation(language, "totalTokens")}
-        value={`${Number(stats.totalTokens).toLocaleString()} $WBC`}
+        value={`${formatNumber(Number(stats.totalTokens))} $SDC`}
       />
       <StatCard
         title={getTranslation(language, "claimedTokens")}
-        value={`${Number(stats.claimedTokens).toLocaleString()} $WBC`}
+        value={`${formatNumber(Number(stats.claimedTokens))} $SDC`}
         progress={claimPercentage}
       />
-      <StatCard title={getTranslation(language, "participants")} value={stats.totalParticipants.toLocaleString()} />
+      <StatCard title={getTranslation(language, "participants")} value={formatNumber(stats.totalParticipants)} />
       <StatCard title={getTranslation(language, "remainingDays")} value={stats.remainingDays.toString()} />
     </motion.div>
   )

@@ -16,7 +16,7 @@ export function HowItWorks() {
     {
       icon: Gift,
       title: "Reivindique tokens",
-      description: "Se você for elegível, poderá reivindicar seus tokens $STDOG com apenas um clique.",
+      description: "Se você for elegível, poderá reivindicar seus tokens $SDC com apenas um clique.",
     },
     {
       icon: Clock,

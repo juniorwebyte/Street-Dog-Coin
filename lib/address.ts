@@ -1,20 +1,10 @@
-import { type ClassValue, clsx } from "clsx"
-import { twMerge } from "tailwind-merge"
+// Arquivo centralizado para gerenciar endereços de contratos
 
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
-}
-
-// Função para formatar números com separadores de milhares
-export function formatNumber(num: number): string {
-  return new Intl.NumberFormat("pt-BR").format(num)
-}
+// Endereço do contrato principal para testes
+export const DEFAULT_CONTRACT_ADDRESS = "0xAF01804Def25a42A51e76994d42489083b1D40f8"
 
 // Função para obter o endereço do contrato com base na rede
 export function getContractAddress(chainId: number): string {
-  // Endereço do contrato padrão para testes
-  const DEFAULT_CONTRACT_ADDRESS = "0xAF01804Def25a42A51e76994d42489083b1D40f8"
-
   // Verificar se há um endereço específico para a rede nas variáveis de ambiente
   let contractAddress: string | undefined
 
@@ -44,4 +34,7 @@ export function getContractAddress(chainId: number): string {
   // Se nenhum endereço válido for encontrado, retornar o endereço padrão
   return DEFAULT_CONTRACT_ADDRESS
 }
+
+// Endereço do token ERC-20
+export const TOKEN_ADDRESS = process.env.NEXT_PUBLIC_TOKEN_ADDRESS || "0xAF01804Def25a42A51e76994d42489083b1D40f8"
 

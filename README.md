@@ -27,7 +27,10 @@ Este é o repositório oficial do sistema de airdrop WebyteCoin, uma plataforma 
 
 2. Instale as dependências:
    \`\`\`
-   npm install
+   npm install --legacy-peer-deps
+   \`\`\`  
+   \`\`\`
+   npm install --force
    \`\`\`
 
 3. Configure as variáveis de ambiente:
@@ -69,4 +72,3 @@ Para implantar em produção, recomendamos usar a Vercel:
 ## Suporte
 
 Para suporte, entre em contato conosco através das issues do GitHub ou pelo nosso canal no Telegram.
-

@@ -13,9 +13,9 @@ export function Footer() {
             <span className="font-bold">Street Dog Coin</span>
           </div>
           <p className="text-sm text-muted-foreground text-center md:text-left">
-          <Link href="https://webytebr.com/" target="_blank" title="Webyte | Tecnologia Laravel" rel="noopener noreferrer">
-            © 2025 Webyte® Todos os direitos reservados.            
-          </Link>
+            <Link href="https://webytebr.com" target="_blank" title="Webyte | Tecnologia Laravel" rel="noopener noreferrer">
+              © 2025 Webyte® Todos os direitos reservados.
+            </Link>
           </p>
         </div>
 
@@ -27,7 +27,7 @@ export function Footer() {
             <Link href="https://github.com/juniorwebyte/Street-Dog-Coin" target="_blank" rel="noopener noreferrer">
               <Github className="h-5 w-5 text-muted-foreground hover:text-primary" />
             </Link>
-            <Link href="https://discord.com" target="_blank" rel="noopener noreferrer">
+            <Link href="https://discord.com/channels/@me" target="_blank" rel="noopener noreferrer">
               <Discord className="h-5 w-5 text-muted-foreground hover:text-primary" />
             </Link>
           </div>

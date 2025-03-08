@@ -1,0 +1,48 @@
+export const SUPPORTED_NETWORKS = [
+  {
+    id: "ethereum",
+    name: "Ethereum",
+    chainId: 1,
+    rpcUrl: "https://mainnet.infura.io/v3/c12212a04e2d43dda0d82b2c06b05559",
+    currencySymbol: "ETH",
+    blockExplorerUrl: "https://etherscan.io",
+    isTestnet: false,
+  },
+  {
+    id: "bsc",
+    name: "Binance Smart Chain",
+    chainId: 56,
+    rpcUrl: "https://bsc-dataseed.binance.org/",
+    currencySymbol: "BNB",
+    blockExplorerUrl: "https://bscscan.com",
+    isTestnet: false,
+  },
+  {
+    id: "polygon",
+    name: "Polygon",
+    chainId: 137,
+    rpcUrl: "https://polygon-rpc.com",
+    currencySymbol: "MATIC",
+    blockExplorerUrl: "https://polygonscan.com",
+    isTestnet: false,
+  },
+  {
+    id: "goerli",
+    name: "Goerli Testnet",
+    chainId: 5,
+    rpcUrl: "https://goerli.infura.io/v3/your-infura-key",
+    currencySymbol: "ETH",
+    blockExplorerUrl: "https://goerli.etherscan.io",
+    isTestnet: true,
+  },
+  {
+    id: "bsc-testnet",
+    name: "BSC Testnet",
+    chainId: 97,
+    rpcUrl: "https://data-seed-prebsc-1-s1.binance.org:8545/",
+    currencySymbol: "tBNB",
+    blockExplorerUrl: "https://testnet.bscscan.com",
+    isTestnet: true,
+  },
+]
+

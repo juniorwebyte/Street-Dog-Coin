@@ -1,7 +1,14 @@
+"use client"
+
 import Link from "next/link"
 import { WalletConnect } from "@/components/wallet-connect"
+import { useWallet } from "@/hooks/use-wallet"
+import { Button } from "@/components/ui/button"
+import { Wallet } from "lucide-react"
 
 export function Navbar() {
+  const { isConnected, address, disconnect } = useWallet()
+
   return (
     <header className="border-b">
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
@@ -25,13 +32,30 @@ export function Navbar() {
           <Link href="/status" className="text-sm font-medium hover:text-primary">
             Status
           </Link>
+          <Link href="/wallet" className="text-sm font-medium hover:text-primary">
+            Carteira
+          </Link>
           <Link href="/configuracao" className="text-sm font-medium hover:text-primary">
             Configuração
           </Link>
         </nav>
 
-        <div className="flex items-center gap-4">
-          <WalletConnect />
+        <div className="flex items-center gap-2">
+          {isConnected ? (
+            <div className="flex items-center gap-2">
+              <Link href="/wallet">
+                <Button variant="ghost" size="sm" className="hidden md:flex items-center gap-1">
+                  <Wallet className="h-4 w-4" />
+                  <span className="font-mono text-xs">
+                    {address?.slice(0, 6)}...{address?.slice(-4)}
+                  </span>
+                </Button>
+              </Link>
+              <WalletConnect />
+            </div>
+          ) : (
+            <WalletConnect />
+          )}
         </div>
       </div>
     </header>

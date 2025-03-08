@@ -19,7 +19,7 @@ export function Timeline() {
     {
       date: "01/06/2025",
       title: "Listagem em Exchanges",
-      description: "Tokens $STDOG serão listados em exchanges descentralizadas e centralizadas.",
+      description: "Tokens $SDC serão listados em exchanges descentralizadas e centralizadas.",
     },
   ]
 
